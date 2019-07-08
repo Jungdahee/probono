@@ -1,2 +1,2 @@
 # probono
-probono í”„ë¡œì íŠ¸ í˜‘ì—…ì„ ìœ„í•œ ì €ìž¥ì†Œ
+probono ÇÁ·ÎÁ§Æ® Çù¾÷À» À§ÇÑ ÀúÀå¼Ò
