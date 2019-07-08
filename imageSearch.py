@@ -3,6 +3,7 @@ import copy
 import re
 from google.cloud import vision
 
+# Google Vision API이용하여 OCR 실행
 class DetectText(object):
 
     def __init__(self):
@@ -26,14 +27,11 @@ class DetectText(object):
         return self.text
 
 
-#구글에서 받은 리스트에서 하나씩 꺼내 정 or 캡슐 or 필름 or 껌 or 밀리그람 or 밀리그램 or mg 들어있는지 확인
-#들어있다면 임의의 리스트에 추가함
-#임의의 리스트를 디비와 비교
-
 words = ['정', '캡슐', '필름', '껌', '밀리그람', '밀리그램', 'mg', '시럽', '클러', '타이레놀']
 stopwords = ['환자정보', '병원정보', '일분', 'Tel', '형정제', '필름코팅', '복용', '묵용', '정제', '규정', '처방전', '환 자 정 보', '환자성명', '경기', '작용',
              '조제', '비)']
 
+# 데이터베이스에 검색 수행하기 전 처리 과정
 class Preprocessing(object):
 
     def __init__(self):
@@ -41,6 +39,7 @@ class Preprocessing(object):
         self.result = []
         self.filtered = []
 
+    # words list안의 내용을 포함하는 문장 추출
     def step1(self, sentences):
 
         for sentence in sentences[0]:
@@ -55,6 +54,7 @@ class Preprocessing(object):
 
         return self.temp
 
+    # step1을 통해 얻은 결과에서 불용어 처리 후 데이터 추출
     def step2(self, tempList):
 
         temp = copy.deepcopy(tempList)
@@ -83,6 +83,7 @@ class Preprocessing(object):
 
         return self.result
 
+    # 특수 기호 제거
     def step3(self, tempList):
 
         for list in tempList:
