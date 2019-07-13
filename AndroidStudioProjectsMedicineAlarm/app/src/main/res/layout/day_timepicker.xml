@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/btn_day_mode"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#FFFFFF"
+            android:stateListAnimator="@null"
+            android:text="요일알림"
+            android:textColor="#E91E63" />
+
+        <Button
+            android:id="@+id/btn_dur_mode"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="기간알림"
+            android:background="#FFFFFF"
+            android:stateListAnimator="@null"
+            android:layout_weight="1"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:visibility="invisible" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_sun"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#ffffff"
+            android:onClick="selectWeek"
+            android:selectAllOnFocus="false"
+            android:text="일" />
+        <Button
+            android:id="@+id/btn_mon"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="월"
+            android:layout_weight="1"
+            android:background="#ffffff"
+            android:onClick="selectWeek"/>
+
+        <Button
+            android:id="@+id/btn_tue"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="화"
+            android:layout_weight="1"
+            android:background="#ffffff"
+            android:onClick="selectWeek"/>
+
+        <Button
+            android:id="@+id/btn_wed"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="수"
+            android:layout_weight="1"
+            android:background="#ffffff"
+            android:onClick="selectWeek"/>
+
+        <Button
+            android:id="@+id/btn_thu"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="목"
+            android:layout_weight="1"
+            android:background="#ffffff"
+            android:onClick="selectWeek"/>
+
+        <Button
+            android:id="@+id/btn_fri"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="금"
+            android:layout_weight="1"
+            android:background="#ffffff"
+            android:onClick="selectWeek"/>
+
+        <Button
+            android:id="@+id/btn_sat"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="토"
+            android:layout_weight="1"
+            android:background="#ffffff"
+            android:onClick="selectWeek"/>
+
+    </LinearLayout>
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#ffffff"
+            android:text="취소" />
+    <Button
+        android:id="@+id/btn_confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="확인"
+        android:background="#ffffff"/>
+</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TimePicker
+            android:id="@+id/alarm_timepicker"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:timePickerMode="spinner"></TimePicker>
+    </LinearLayout>
+</LinearLayout>

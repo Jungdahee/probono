@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="80dp">
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="75"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textTitle"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:text="제목"
+            android:layout_weight="60"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:textStyle="bold"
+            android:textColor="#33aabb"
+            />
+        <TextView
+            android:id="@+id/texttime"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:text="날짜"
+            android:layout_weight="40"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:id="@+id/sunday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:text="일" />
+
+            <TextView
+                android:id="@+id/monday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:text="월" />
+
+            <TextView
+                android:id="@+id/tuesday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/sunday"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:text="화" />
+
+            <TextView
+                android:id="@+id/wednesday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/tuesday"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:text="수" />
+
+            <TextView
+                android:id="@+id/thursday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/wednesday"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:text="목" />
+
+            <TextView
+                android:id="@+id/friday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/thursday"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:text="금" />
+
+            <TextView
+                android:id="@+id/saturday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:text="토" />
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="20"
+        android:text="녹음" />
+    <View
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="5"
+        />
+</LinearLayout>

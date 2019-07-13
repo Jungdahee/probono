@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="130dp"
+        android:layout_height="50dp"
+        android:layout_weight="1"
+        app:srcCompat="@drawable/medicine" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/alarm_set_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="약품명" />
+
+        <TextView
+            android:id="@+id/alarm_set_memo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="복용방법" />
+
+        <TextView
+            android:id="@+id/alarm_set_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="아이디"
+            android:visibility="invisible" />
+    </LinearLayout>
+
+    <Switch
+        android:id="@+id/alarm_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" />
+
+
+</LinearLayout>
