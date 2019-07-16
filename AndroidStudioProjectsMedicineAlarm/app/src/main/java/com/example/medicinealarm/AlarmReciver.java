@@ -17,8 +17,10 @@ public class AlarmReciver extends BroadcastReceiver {
         Intent serviceIntent = new Intent(context, RingtonePlayingService.class);
         Intent control = new Intent(context,AlarmControl.class);
 
-       if(getYourString.equals("alarm on"))
-                this.context.startActivity(control.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+       if(getYourString.equals("alarm on")) {
+           this.context.startActivity(control.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+
+       }
 
            serviceIntent.putExtra("state",getYourString);
 

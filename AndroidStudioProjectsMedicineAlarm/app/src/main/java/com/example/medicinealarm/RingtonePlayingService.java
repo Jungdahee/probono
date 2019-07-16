@@ -9,8 +9,11 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.IBinder;
+import android.os.PowerManager;
 import android.support.annotation.Nullable;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+import android.widget.RemoteViews;
 
 public class RingtonePlayingService extends Service {
 
@@ -28,15 +31,23 @@ public class RingtonePlayingService extends Service {
     public void onCreate() {
         super.onCreate();
 
-        if (Build.VERSION.SDK_INT >=26) {
+
+    }
+
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+
+        if (Build.VERSION.SDK_INT >=26) {  //알람 발생 및 알림 띄우기
             String channelID ="default";
             NotificationChannel channel = new NotificationChannel(channelID,
-                    "Channel human readalbe title",
+                    "Channel human readable title",
                     NotificationManager.IMPORTANCE_DEFAULT);
 
             ((NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE)).createNotificationChannel(channel);
 
-            Notification notification = new Notification.Builder(this, channelID)
+
+            Notification notification = new NotificationCompat.Builder(this, channelID)
                     .setContentTitle("알람시작")
                     .setContentText("알람음이 재생됩니다.")
                     .setSmallIcon(R.mipmap.ic_launcher)
@@ -44,14 +55,16 @@ public class RingtonePlayingService extends Service {
 
             startForeground(1,notification);
 
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel);
+            manager.notify(1,notification);
+
+
+
+
 
 
         }
-    }
-
-
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
 
         String getState = intent.getExtras().getString("state");
 
@@ -73,35 +86,43 @@ public class RingtonePlayingService extends Service {
         }
 
 
-        if(!this.isRunning && startId == 1){
+        // 알람음 재생 X , 알람음 시작 클릭
+        if(!this.isRunning && startId == 1) {
 
             mediaPlayer = MediaPlayer.create(this,R.raw.test);
             mediaPlayer.start();
 
             this.isRunning = true;
             this.startId = 0;
-
         }
 
-        else  if(this.isRunning && startId == 0) {
+        // 알람음 재생 O , 알람음 종료 버튼 클릭
+        else if(this.isRunning && startId == 0) {
 
             mediaPlayer.stop();
             mediaPlayer.reset();
             mediaPlayer.release();
 
             this.isRunning = false;
-            this.startId =0;
+            this.startId = 0;
+        }
+
+        // 알람음 재생 X , 알람음 종료 버튼 클릭
+        else if(!this.isRunning && startId == 0) {
+
+            this.isRunning = false;
+            this.startId = 0;
 
         }
 
+        // 알람음 재생 O , 알람음 시작 버튼 클릭
         else if(this.isRunning && startId == 1){
 
             this.isRunning = true;
-            this.startId =1;
+            this.startId = 1;
         }
 
         else {
-
         }
         return START_NOT_STICKY;
 

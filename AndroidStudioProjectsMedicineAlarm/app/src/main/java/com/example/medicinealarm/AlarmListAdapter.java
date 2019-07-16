@@ -2,6 +2,7 @@ package com.example.medicinealarm;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.database.Observable;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.util.Log;
@@ -14,6 +15,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.ConcurrentModificationException;
+import java.util.Iterator;
+import java.util.List;
 
 public class AlarmListAdapter extends BaseAdapter {
 
@@ -141,6 +146,7 @@ public class AlarmListAdapter extends BaseAdapter {
                             String type;
                             String checked;
 
+
                             while (cursor.moveToNext()) {
                                  id = cursor.getInt(0);
                                  name = cursor.getString(1);
@@ -167,7 +173,6 @@ public class AlarmListAdapter extends BaseAdapter {
 
                                     button_click(id, name, item);
                                     notifyDataSetChanged();
-
                                 }
 
 
@@ -187,6 +192,7 @@ public class AlarmListAdapter extends BaseAdapter {
                                     }
                                     alarm_Data = tempCopy;
                                     notifyDataSetChanged();
+
 
                                 }
 
@@ -263,18 +269,24 @@ public class AlarmListAdapter extends BaseAdapter {
 
     public void button_click(int id,String name, AlarmListItem timeSet)
     {
-        for (int i =0; i<alarm_Data.size();i++)
+
+        int check;
+        for (check =0; check<alarm_Data.size();check++)
         {
-            AlarmListItem item = alarm_Data.get(i);
-            if(item.getId() == id && item.getTitle().equals(name))
-            {
-                alarm_Data.add(++i,timeSet);
-                break;
-
-            }
-
+                AlarmListItem item = alarm_Data.get(check);
+                if (item.getId() == id && item.getTitle().equals(name) && item.getType()==2) {
+                    check++;
+                    break;
+                }
         }
 
+        List<AlarmListItem>  tempList = new ArrayList<>(alarm_Data.subList(0,check));
+        tempList.add(timeSet);
+        tempList.addAll(alarm_Data.subList(check,alarm_Data.size()));
+
+        alarm_Data.clear();
+
+        alarm_Data.addAll(tempList);
 
     }
 

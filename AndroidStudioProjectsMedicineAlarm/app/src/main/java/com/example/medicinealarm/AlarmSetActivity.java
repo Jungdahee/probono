@@ -49,7 +49,7 @@ public class AlarmSetActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.alarm_set);
 
-        alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
         medicineName = (TextView)findViewById(R.id.medicine_name); // 알림 이름
         memo = (TextView)findViewById(R.id.medicine_memo); // 알림 복용방법 및 메모내용
         timeCount = (TextView)findViewById(R.id.time_cnt); // 알림별 설정한 알림시각 갯수
@@ -57,12 +57,12 @@ public class AlarmSetActivity extends AppCompatActivity {
         btnAlarmSet = (Button)findViewById(R.id.btn_set_alarm); //  알람 등록 버튼
 
 
-        final Calendar calendar = Calendar.getInstance();
         final Intent intent = new Intent(this,AlarmReciver.class);
 
         btnTimeSet.setOnClickListener(new View.OnClickListener() { // 알림별 시간 등록 추가
             @Override
             public void onClick(View v) { // 시간 등록 버튼 이벤트
+
                 if(medicineName.getText().toString().equals(""))  //  알림이름 설정을 안할 경우
                 {
                     Toast.makeText(getApplicationContext(),"약 이름을 입력해주세요",Toast.LENGTH_SHORT).show();
@@ -77,6 +77,7 @@ public class AlarmSetActivity extends AppCompatActivity {
         btnAlarmSet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { //알람 등록 버튼 이벤트
+                        final Calendar calendar = Calendar.getInstance();
                         Date date = new Date();
                         String nowDate = format1.format(date); // 현재 시각 저장, 현재 시각 형식 yyyy-mm-dd hh:mm:ss
 
@@ -101,8 +102,10 @@ public class AlarmSetActivity extends AppCompatActivity {
                             else if(item.getType() == 0 ) {
                                 db.execSQL("INSERT INTO setlistTime (_id,name,alarmTime,alarmDate,type,checked) VALUES " +
                                         "(" + id + ",\"" + medicineName.getText().toString() + "\"" + ", \"" + item.getTime() + "\",\"" + item.getSet_week() + "\"," + "\"DAY\" " + ",\"" + "true" + "\");");
-                                calendar.set(Calendar.HOUR,item.getHour());
+                                calendar.set(Calendar.HOUR_OF_DAY,item.getHour());
                                 calendar.set(Calendar.MINUTE,item.getMinute());
+                                calendar.set(Calendar.SECOND,0);
+                                calendar.set(Calendar.MILLISECOND,0);
 
                                 intent.putExtra("state","alarm on");
 
@@ -112,23 +115,26 @@ public class AlarmSetActivity extends AppCompatActivity {
 
                                 alarmManager.set(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),
                                         pendingIntent);
-
 
                             }
                             else {
                                 db.execSQL("INSERT INTO setlistTime (_id,name,alarmTime,alarmDate,type,checked) VALUES " +
                                         "(" + id + ",\"" + medicineName.getText().toString() + "\"" + ", \"" + item.getTime() + "\",\"" + item.getRepeat() + "\"," + "\"DUR\" " + ",\"" + "true" + "\");");
-                                calendar.set(Calendar.HOUR,item.getHour());
+
+                                calendar.set(Calendar.HOUR_OF_DAY,item.getHour());
                                 calendar.set(Calendar.MINUTE,item.getMinute());
+                                calendar.set(Calendar.SECOND,0);
+                                calendar.set(Calendar.MILLISECOND,0);
+
 
                                 intent.putExtra("state","alarm on");
+
 
                                 pendingIntent = PendingIntent.getBroadcast(AlarmSetActivity.this,0,intent,
                                         PendingIntent.FLAG_CANCEL_CURRENT);
 
                                 alarmManager.set(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),
                                         pendingIntent);
-
 
                             }
                         }

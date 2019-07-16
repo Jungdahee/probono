@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         mainMenu[3].setOnClickListener(new View.OnClickListener() {  // 알람 확인 액티비티 켜기
             @Override
             public void onClick(View v) {
-                intent = new Intent(getApplicationContext(), AlramCheckActivity.class);
+                intent = new Intent(getApplicationContext(), AlarmCheckActivity.class);
                 startActivity(intent);
             }
         });

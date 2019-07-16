@@ -116,7 +116,7 @@ public class AlarmListItem {
         else{
 
             result =array[1].substring(0,array[1].length()-1);
-            return Integer.parseInt(result)*2;
+            return Integer.parseInt(result)+12;
 
         }
     }
