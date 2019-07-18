@@ -9,11 +9,9 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.IBinder;
-import android.os.PowerManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
-import android.widget.RemoteViews;
 
 public class RingtonePlayingService extends Service {
 
@@ -86,17 +84,15 @@ public class RingtonePlayingService extends Service {
         }
 
 
-        // 알람음 재생 X , 알람음 시작 클릭
         if(!this.isRunning && startId == 1) {
 
-            mediaPlayer = MediaPlayer.create(this,R.raw.test);
+            mediaPlayer = MediaPlayer.create(this,R.raw.defaultringtone);
             mediaPlayer.start();
 
             this.isRunning = true;
             this.startId = 0;
         }
 
-        // 알람음 재생 O , 알람음 종료 버튼 클릭
         else if(this.isRunning && startId == 0) {
 
             mediaPlayer.stop();
@@ -107,7 +103,6 @@ public class RingtonePlayingService extends Service {
             this.startId = 0;
         }
 
-        // 알람음 재생 X , 알람음 종료 버튼 클릭
         else if(!this.isRunning && startId == 0) {
 
             this.isRunning = false;
@@ -115,7 +110,6 @@ public class RingtonePlayingService extends Service {
 
         }
 
-        // 알람음 재생 O , 알람음 시작 버튼 클릭
         else if(this.isRunning && startId == 1){
 
             this.isRunning = true;
