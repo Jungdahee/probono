@@ -13,11 +13,16 @@ probono 프로젝트 협업을 위한 저장소
 
 * * *
 
-## 사용 언어
+## 사용 언어 및 프레임워크
 * Java
 * Python
+* Django
+* sql
 
 ## 사용 Tool
 * Android Studio
 * Jupyter notebook
 * Notion, Github
+
+## 사용 서버
+* ubuntu 18.04 LTS
