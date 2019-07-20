@@ -1,17 +1,18 @@
 package com.example.medicinealarm;
 
 import android.app.AlarmManager;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.PowerManager;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
+
+import java.util.Calendar;
 
 public class AlarmControl extends AppCompatActivity {
     private Button alarmCancle;
@@ -23,8 +24,18 @@ public class AlarmControl extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.alarmcontrl);
 
-        final Intent intent = new Intent(this, AlarmReciver.class);
-        pendingIntent = PendingIntent.getBroadcast(AlarmControl.this,0,intent,
+
+
+
+
+
+        final Calendar calendar = Calendar.getInstance();
+
+        final Intent intentAlarmReceiver = new Intent(this, AlarmReceiver.class);
+        final Intent intentAlarmSet = new Intent(this, AlarmSetActivity.class);
+
+        int id = intentAlarmSet.getIntExtra(Long.toString(calendar.getTimeInMillis()),1);
+        pendingIntent = PendingIntent.getBroadcast(AlarmControl.this,id,intentAlarmSet,
                 PendingIntent.FLAG_CANCEL_CURRENT);
 
         alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
@@ -35,11 +46,10 @@ public class AlarmControl extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
                 alarmManager.cancel(pendingIntent);
-                intent.putExtra("state","alarm off");
+                intentAlarmReceiver.putExtra("state","alarm off");
 
-                sendBroadcast(intent);
+                sendBroadcast(intentAlarmReceiver);
                 finish();
 
 

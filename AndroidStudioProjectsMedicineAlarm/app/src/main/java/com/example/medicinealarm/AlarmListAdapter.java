@@ -148,12 +148,12 @@ public class AlarmListAdapter extends BaseAdapter {
 
 
                             while (cursor.moveToNext()) {
-                                 id = cursor.getInt(0);
-                                 name = cursor.getString(1);
-                                alarmTime = cursor.getString(2);
-                                alarmDate = cursor.getString(3);
-                                type = cursor.getString(4);
-                                checked = cursor.getString(5);
+                                 id = cursor.getInt(1);
+                                 name = cursor.getString(2);
+                                alarmTime = cursor.getString(3);
+                                alarmDate = cursor.getString(4);
+                                type = cursor.getString(5);
+                                checked = cursor.getString(6);
 
                                 AlarmListItem item = new AlarmListItem();
                                 item.setId(id);
@@ -161,10 +161,10 @@ public class AlarmListAdapter extends BaseAdapter {
                                 item.setTime(alarmTime);
                                 item.setDate(alarmDate);
                                 if (type.equals("DAY")) {
-                                    item.setType(0);
+                                    item.setType(ITEM_VIEW_TYPE_DAY);
                                     item.setSet_week(alarmDate);
                                 } else {
-                                    item.setType(1);
+                                    item.setType(ITEM_VIEW_TYPE_DUR);
                                     item.setRepeat(alarmDate);
                                 }
 
@@ -279,7 +279,9 @@ public class AlarmListAdapter extends BaseAdapter {
                     break;
                 }
         }
+        alarm_Data.add(check,timeSet);
 
+        /*
         List<AlarmListItem>  tempList = new ArrayList<>(alarm_Data.subList(0,check));
         tempList.add(timeSet);
         tempList.addAll(alarm_Data.subList(check,alarm_Data.size()));
@@ -287,6 +289,8 @@ public class AlarmListAdapter extends BaseAdapter {
         alarm_Data.clear();
 
         alarm_Data.addAll(tempList);
+
+        */
 
     }
 

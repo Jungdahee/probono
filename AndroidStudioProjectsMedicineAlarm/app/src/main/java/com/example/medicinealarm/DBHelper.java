@@ -19,7 +19,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE schedule (_id INTEGER PRIMARY KEY"
                 +" AUTOINCREMENT,name TEXT,memo TEXT,createDate TEXT);");
 
-        db.execSQL("CREATE TABLE setlistTime (_id INTEGER ,name TEXT ,"
+        db.execSQL("CREATE TABLE setlistTime (_index INTEGER PRIMARY KEY AUTOINCREMENT,_id INTEGER ,name TEXT ,"
                 +"alarmTime TEXT, alarmDate  TEXT, type TEXT,checked TEXT," +
                 "FOREIGN KEY (_id, name) REFERENCES schedule(_id,name));");
     }
