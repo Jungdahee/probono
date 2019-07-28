@@ -219,7 +219,6 @@ public class AlarmSetActivity extends AppCompatActivity {
 
         for(int position = 0 ;position<count;position++) // 시간등록 갯수 만큼 DB에 정보 삽입
         {
-            int setListid;
             AlarmListItem item = (AlarmListItem)adapter.getItem(position);
 
             calendar.set(Calendar.HOUR_OF_DAY,item.getHour());
@@ -237,23 +236,13 @@ public class AlarmSetActivity extends AppCompatActivity {
                 db.execSQL("INSERT INTO setlistTime (_id,name,alarmTime,alarmDate,type,checked) VALUES " +
                         "(" + id + ",\"" + medicineName.getText().toString() + "\"" + ", \"" + item.getTime() + "\",\"" + item.getSet_week() + "\"," + "\"DAY\" " + ",\"" + "true" + "\");");
 
-                sql = "SELECT * FROM setlistTime WHERE " +
-                        "_id = "+ id+" AND  name="+"\""+medicineName.getText().toString()+"\""+" AND alarmTIme = \""+item.getTime()+"\" AND alarmDate = \""+item.getSet_week()+ "\";";
-                cursor = db.rawQuery(sql,null);
-                cursor.moveToNext();
-                setListid = cursor.getInt(0);
             }
             else {
                 db.execSQL("INSERT INTO setlistTime (_id,name,alarmTime,alarmDate,type,checked) VALUES " +
                         "(" + id + ",\"" + medicineName.getText().toString() + "\"" + ", \"" + item.getTime() + "\",\"" + item.getRepeat() + "\"," + "\"DUR\" " + ",\"" + "true" + "\");");
 
-                sql = "SELECT * FROM setlistTime WHERE " +
-                        "_id = "+ id+" AND  name="+"\""+medicineName.getText().toString()+"\""+" AND alarmTIme = \""+item.getTime()+"\" AND alarmDate = \""+item.getRepeat()+ "\";";
-                cursor = db.rawQuery(sql,null);
-                cursor.moveToNext();
-                setListid = cursor.getInt(0);
             }
-
+            int setListid = InitializationVariables.getAlarmCount();
             intentAlarmControl.putExtra(Long.toString(calendar.getTimeInMillis()),setListid);
             intentAlarmReceiver.putExtra("state","alarm on");
 

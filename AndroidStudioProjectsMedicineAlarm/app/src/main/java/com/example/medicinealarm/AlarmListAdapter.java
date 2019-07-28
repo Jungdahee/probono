@@ -20,7 +20,7 @@ import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.List;
 
-public class AlarmListAdapter extends BaseAdapter {
+public  class AlarmListAdapter extends BaseAdapter {
 
     private static final int ITEM_VIEW_TYPE_DAY = 0 ;
     private static final int ITEM_VIEW_TYPE_DUR = 1 ;
