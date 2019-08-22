@@ -17,11 +17,13 @@ probono 프로젝트 협업을 위한 저장소
 * Java
 * Python
 * Django
+* Django REST framework
 * sql
 
 ## 사용 Tool
 * Android Studio
 * Jupyter notebook
+* pycharm
 * Notion, Github
 
 ## 사용 서버
