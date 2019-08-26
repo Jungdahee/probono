@@ -28,3 +28,4 @@ probono 프로젝트 협업을 위한 저장소
 
 ## 사용 서버
 * ubuntu 18.04 LTS
+* nginx
